@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+<body>
+
+{{ form_start(form) }}
+{{ form_row(form.name) }}
+{{ form_row(form.text) }}
+{{ form_row(form.urgency) }}
+{% if is_granted('ROLE_ADMIN') %}
+    {{ form_row(form.status) }}
+{% endif %}
+{{ form_row(form.save) }}
+{{ form_end(form) }}
+</body>
+</html>

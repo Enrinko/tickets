@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+<body>
+{% if is_granted('ROLE_ADMIN') %}
+    <a href="{{ path('reg') }}">Создать пользователя</a>
+    {% else %}
+        <a href="{{ path('add') }}">Создать новый тикет</a>
+{% endif %}
+<table>
+    <tr>
+        <th>Имя</th>
+        <th>Статус</th>
+        <th>Срочность</th>
+        {% if is_granted('ROLE_ADMIN') %}
+        <th>Изменить</th>
+        {% endif %}
+    </tr>
+{#{{ dump(ticketsOfUser.0) }}#}
+    {% for i, tickets in ticketsOfUser %}
+    <tr>
+        <td>
+            {{ tickets.name }}
+        </td>
+        <td>
+            {{ tickets.status.status }}
+        </td>
+        <td>
+            {{ tickets.urgency.time }} час(а)
+        </td>
+        {% if is_granted('ROLE_ADMIN') %}
+        <td>
+            <a href="{{  path('edit', {'id': tickets.id}) }}">Изменить</a>
+        </td>
+        {% endif %}
+    </tr>
+        {% else %}
+        <tr>
+            <td>
+                Вы ещё не создали ни одного тикета! <a href="{{ path('add') }}">Создать?</a>
+            </td>
+        </tr>
+{% endfor %}
+    </table>
+</body>
+</html>

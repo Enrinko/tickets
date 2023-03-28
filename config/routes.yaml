@@ -1,5 +1,21 @@
-controllers:
-    resource:
-        path: ../src/Controller/
-        namespace: App\Controller
-    type: attribute
+reg:
+  path: /reg
+  controller: App\Controller\AdminController::reg
+edit:
+  path: /edit/{id}
+  controller: App\Controller\AdminController::edit
+admin:
+  path: /admin
+  controller: App\Controller\AdminController::admin
+login:
+  path: /login
+  controller: App\Controller\TicketController::login
+logout:
+    path: /logout
+    controller: App\Controller\TicketController::logout
+add:
+  path: /ticket/add
+  controller: App\Controller\TicketController::add
+tickets:
+  path: /ticket/list
+  controller: App\Controller\TicketController::ticketList
